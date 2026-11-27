@@ -1,0 +1,1552 @@
+# TASK: Build a Premium Cinematic Two-Tier Birthday Cake Animation
+
+Create a **single, self-contained HTML file** containing everything required for the experience:
+
+- HTML
+- CSS
+- Vanilla JavaScript
+- Inline SVG and/or Canvas
+
+Do **not** split the project into multiple files.
+
+The final output must be a polished, cinematic, premium birthday-cake animation that visually shows a **realistic TWO-TIER birthday cake being constructed from individual ingredients and components, one step at a time**.
+
+The experience should feel like a miniature cinematic cake-making scene rather than a flat website animation.
+
+---
+
+# 1. ABSOLUTE PAGE REQUIREMENTS
+
+The page must show **ONLY the birthday-cake scene**.
+
+Do NOT create:
+
+- Navigation bars
+- Headers
+- Footers
+- Hero sections
+- Cards
+- Sidebars
+- Landing-page sections
+- Text menus
+- Large UI panels
+- Unrelated decorative sections
+
+The entire viewport is the scene.
+
+The cake should remain the clear visual focus at all times.
+
+Use:
+
+```css
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+```
+
+The scene must fill the entire browser viewport.
+
+---
+
+# 2. VISUAL STYLE
+
+The overall aesthetic should be:
+
+- cinematic
+- warm
+- magical
+- elegant
+- premium
+- realistic
+- dimensional
+- softly illuminated
+- sophisticated
+- calm
+- celebratory
+
+Avoid a childish/cartoon appearance.
+
+Avoid flat vector-looking cake pieces.
+
+Avoid excessive UI elements.
+
+Avoid overly saturated colors.
+
+The cake should look like a carefully crafted premium bakery cake rendered in a dark cinematic environment.
+
+Think:
+
+> luxury birthday celebration + professional cake photography + subtle cinematic animation
+
+---
+
+# 3. BACKGROUND / ENVIRONMENT
+
+Create a full-screen dark environment.
+
+Use a radial gradient similar to:
+
+```css
+background:
+    radial-gradient(
+        circle at 50% 38%,
+        #0b1020 0%,
+        #070b16 40%,
+        #030407 100%
+    );
+```
+
+The center behind the cake should be slightly brighter than the edges.
+
+## 3.1 Fairy Lights
+
+Across the upper portion of the scene, create a gently curved string of small lights.
+
+The wire should follow a subtle curve:
+
+```text
+     •      •       •      •
+  •     •       •       •      •
+──────────────────────────────
+```
+
+The lights should be a mixture of:
+
+- warm gold
+- soft pink
+- pale blue
+- warm white
+
+Each bulb should have:
+
+- a small bright core
+- a soft blurred glow
+- subtle surrounding halo
+
+Lights must twinkle independently.
+
+Do NOT make every light blink simultaneously.
+
+Use randomized timing so each bulb has slightly different:
+
+- opacity
+- scale
+- glow intensity
+
+The animation should be subtle.
+
+---
+
+# 4. BACKGROUND BOKEH
+
+Add slowly drifting blurred circles in the background.
+
+Characteristics:
+
+- very low opacity
+- large blur
+- slow movement
+- different sizes
+- slightly different colors
+- never distracting
+
+They should create depth behind the cake.
+
+Some bokeh particles can gently move upward.
+
+Others can drift sideways.
+
+Do not make them look like snow.
+
+They should look like cinematic lens bokeh.
+
+---
+
+# 5. SPOTLIGHT
+
+Create a soft overhead spotlight focused on the cake.
+
+The spotlight should resemble a large diffused cone of light.
+
+It should illuminate:
+
+- cake
+- table
+- surrounding air
+
+The edges of the spotlight must fade smoothly into the dark environment.
+
+The cake should be brighter than the background.
+
+---
+
+# 6. TABLE / SURFACE
+
+At the bottom of the scene create a polished:
+
+- dark wood surface OR
+- dark marble surface
+
+The surface should have:
+
+- subtle horizontal texture
+- soft reflection
+- realistic shading
+- slight vignette
+
+The cake should cast a soft shadow onto the surface.
+
+There should be a faint reflection of:
+
+- cake
+- candlelight
+- nearby lights
+
+Do not make the reflection mirror-like.
+
+Keep it subtle and realistic.
+
+---
+
+# 7. CAKE POSITIONING
+
+The cake must remain centered.
+
+Use a responsive cake container.
+
+Desktop:
+
+- cake approximately 35–50% of viewport height
+
+Mobile portrait:
+
+- cake approximately 45–60% of viewport width
+- ensure the entire cake remains visible
+
+The cake must never be cropped.
+
+Maintain correct proportions when resizing.
+
+Do not allow the cake to move off-screen.
+
+---
+
+# 8. RENDERING METHOD
+
+Use:
+
+- SVG
+- Canvas
+- CSS
+- Vanilla JavaScript
+
+You may combine SVG and HTML/CSS where appropriate.
+
+SVG is strongly preferred for:
+
+- cake geometry
+- frosting
+- drips
+- decorative piping
+- candles
+- strawberries
+- blueberries
+- macarons
+- cake board
+
+Canvas may be used for:
+
+- particles
+- sparkles
+- confetti
+- bokeh
+- atmospheric effects
+
+Do NOT use external image assets.
+
+Everything must be generated procedurally or drawn directly in the HTML.
+
+---
+
+# 9. IMPORTANT ANIMATION RULE
+
+The cake must be constructed **STRICTLY SEQUENTIALLY**.
+
+This is extremely important.
+
+Only one major construction action should happen at a time.
+
+The viewer must clearly understand:
+
+> component → placement → completion → next component
+
+Do NOT show the complete cake at the beginning.
+
+Do NOT reveal future components prematurely.
+
+Do NOT animate all ingredients simultaneously.
+
+Every major step must complete before the next major step begins.
+
+Use a timeline/state-machine architecture rather than a collection of unrelated CSS animations.
+
+For example:
+
+```javascript
+const steps = [
+    buildCakeBoard,
+    buildBottomSponge1,
+    addBottomFilling,
+    addBottomSponge2,
+    frostBottomTier,
+    addBottomGanache,
+    addDowels,
+    buildTopTier,
+    addDecorations,
+    addToppings,
+    addCandles,
+    lightCandles,
+    celebration
+];
+```
+
+Each function should return a Promise so the next step waits for completion.
+
+Example concept:
+
+```javascript
+async function runSequence() {
+    await buildCakeBoard();
+    await buildBottomTier();
+    await addFrosting();
+    await addCandles();
+    await lightCandles();
+    await celebration();
+}
+```
+
+Do not start the next major stage until the previous stage has finished.
+
+---
+
+# 10. STEP 1 — CAKE BOARD
+
+Start with an completely empty table.
+
+After a short cinematic pause:
+
+A round metallic cake board enters the scene.
+
+The board should:
+
+- slide gently into the center
+- slightly rotate while entering
+- settle naturally
+- have a subtle bounce
+- cast a soft shadow
+
+Use:
+
+- gold or champagne metallic edge
+- slightly darker center
+- subtle radial highlight
+
+After placement, create a light sweep across the board.
+
+The shine should travel from left to right.
+
+Pause briefly.
+
+---
+
+# 11. STEP 2 — FIRST BOTTOM SPONGE
+
+A thick round chocolate sponge layer enters from above.
+
+The sponge should:
+
+- descend naturally
+- accelerate slightly
+- slow down before landing
+- land on the cake board
+- compress slightly
+- bounce once
+- settle
+
+Use subtle squash-and-stretch.
+
+Do NOT make it bounce like a rubber ball.
+
+The side of the sponge must contain visible texture.
+
+Create small:
+
+- air pockets
+- pores
+- irregular baked texture
+
+The top should be slightly lighter.
+
+The side should be darker.
+
+Add a subtle shadow underneath.
+
+---
+
+# 12. STEP 3 — BOTTOM FILLING
+
+A piping bag enters from above/side.
+
+The piping bag must feel like an actual baking tool.
+
+It should:
+
+1. move into position
+2. touch the cake
+3. squeeze
+4. dispense cream
+5. move in a circular spiral
+6. cover the sponge
+7. stop squeezing
+8. move away
+9. fade/exit
+
+The cream should visibly grow from the center outward.
+
+Do not simply fade in a white circle.
+
+The filling must look like it is being physically deposited.
+
+Then add strawberry slices.
+
+Strawberries should:
+
+- appear individually
+- drop onto the cream
+- slightly rotate
+- bounce gently
+- settle naturally
+
+Use approximately 4–6 slices.
+
+Each slice should have:
+
+- red/pink body
+- lighter inner flesh
+- tiny seed details
+
+Pause after the last strawberry.
+
+---
+
+# 13. STEP 4 — SECOND BOTTOM SPONGE
+
+A second chocolate sponge layer enters from above.
+
+It should align with the first layer.
+
+The layer should:
+
+- descend
+- slow down
+- touch the filling
+- compress the cream slightly
+- create a tiny cream bulge around the edge
+- bounce gently
+- settle
+
+The filling should remain visible slightly around the edge.
+
+Do not completely hide the filling.
+
+---
+
+# 14. STEP 5 — BOTTOM TIER FROSTING
+
+Now introduce a cake spatula/palette knife.
+
+The spatula should:
+
+1. enter from the side
+2. approach the cake
+3. begin spreading frosting
+4. move around the circumference
+5. smooth the sides
+6. smooth the top
+7. perform a final finishing pass
+8. leave the scene
+
+The frosting should gradually cover the sponge.
+
+It must NOT simply appear instantly.
+
+Create a believable frosting-wrap animation.
+
+Use:
+
+- cream/white buttercream
+- subtle pastel warmth
+- darker shading at the bottom
+- brighter highlights on the upper edges
+
+Add a glossy highlight after the final smoothing pass.
+
+The completed tier should look like a professionally frosted cake.
+
+---
+
+# 15. STEP 6 — CHOCOLATE GANACHE DRIP
+
+Show melted dark chocolate ganache being poured onto the top.
+
+The ganache should appear glossy and liquid.
+
+It should:
+
+- spread across the top
+- reach the edge
+- begin dripping
+- create multiple individual drips
+
+Important:
+
+The drips must NOT all have the same length.
+
+Create naturally varied drips:
+
+- short
+- medium
+- long
+- slightly curved
+
+Each drip should move downward at a slightly different time.
+
+After dripping, the ganache should gradually become more stable and glossy.
+
+Add realistic highlights.
+
+---
+
+# 16. STEP 7 — SUPPORT DOWELS
+
+Briefly reveal structural support dowels.
+
+Show approximately 3–4 small dowels.
+
+They should:
+
+- rise from the bottom tier
+- appear briefly
+- settle into position
+- remain visible for a short moment
+- then become hidden once the upper tier is placed
+
+This should be subtle and quick.
+
+Do not make this a major visual focus.
+
+---
+
+# 17. STEP 8 — BUILD TOP TIER
+
+The top tier must be approximately:
+
+**60–65% of the bottom tier's width.**
+
+It must be perfectly centered.
+
+Repeat a shortened cake-building process.
+
+## 8.1 Vanilla Sponge
+
+A smaller vanilla sponge drops into position.
+
+Use:
+
+- light golden color
+- baked texture
+- subtle pores
+- darker side shading
+
+It lands on the bottom tier/support structure.
+
+Use a gentle bounce.
+
+---
+
+## 8.2 Strawberry Cream
+
+A piping bag appears.
+
+Pink strawberry cream is piped across the top.
+
+The cream must visibly spread from the center outward.
+
+Then add a few strawberry pieces.
+
+---
+
+## 8.3 Second Vanilla Sponge
+
+A second vanilla sponge layer descends.
+
+It should compress the filling slightly.
+
+It should land perfectly centered.
+
+---
+
+## 8.4 Pink Frosting
+
+Pink buttercream gradually wraps around the top tier.
+
+Use:
+
+- pastel strawberry pink
+- smooth highlights
+- subtle darker side shading
+- realistic creamy appearance
+
+A spatula should perform the smoothing action.
+
+---
+
+## 8.5 White/Pink Chocolate Drip
+
+Add a glossy drip around the top tier.
+
+Use either:
+
+- white chocolate
+- soft pink chocolate
+
+Create natural drip lengths.
+
+---
+
+# 18. TOP-TIER LANDING
+
+When the top tier is finally positioned:
+
+- it must be perfectly centered
+- it should land with a very subtle bounce
+- the lower tier should respond visually with a tiny shadow/compression effect
+
+Do not make the entire cake shake excessively.
+
+The final structure should feel stable and physically believable.
+
+Pause before decorations begin.
+
+---
+
+# 19. STEP 9 — PIPED DECORATIONS
+
+Now add decorative piping.
+
+A piping bag enters.
+
+Create a border around the bottom tier.
+
+The rosettes/shells must appear:
+
+**ONE BY ONE.**
+
+Do not reveal the entire border instantly.
+
+For each decoration:
+
+1. piping bag moves
+2. cream expands
+3. rosette forms
+4. piping bag moves to next position
+5. next rosette forms
+
+Continue around the circumference.
+
+Repeat for the top tier.
+
+Add smaller cream dots/pearls around selected edges.
+
+Use subtle highlights to make the buttercream appear three-dimensional.
+
+---
+
+# 20. STEP 10 — TOPPINGS
+
+Now decorate the top.
+
+Place toppings individually.
+
+Suggested combination:
+
+- strawberries
+- blueberries
+- small macarons
+- chocolate pieces
+
+Each topping must:
+
+1. enter from above or side
+2. rotate slightly
+3. drop into position
+4. bounce subtly
+5. settle
+
+Do not place everything simultaneously.
+
+Approximately 6–10 individual topping actions.
+
+Then create a very light sprinkle rain.
+
+Sprinkles should:
+
+- fall from above
+- have different rotations
+- have different colors
+- settle on the cake
+
+Do not make the sprinkle effect excessive.
+
+Finally add several tiny edible gold flakes.
+
+They should sparkle briefly.
+
+---
+
+# 21. STEP 11 — CANDLES
+
+Add approximately 5–7 thin pastel candles.
+
+Candles must rise from the top tier:
+
+- one
+- then another
+- then another
+
+Stagger each by approximately 0.2–0.3 seconds.
+
+Each candle should have:
+
+- pastel body
+- subtle stripes
+- small wick
+- soft shadow
+
+Use slightly different pastel colors.
+
+Candles should be evenly distributed but not perfectly mechanical.
+
+---
+
+# 22. STEP 12 — LIGHTING THE CANDLES
+
+This should be one of the most cinematic moments.
+
+A tiny match/lighter spark appears.
+
+It moves from candle to candle.
+
+For each candle:
+
+1. spark approaches
+2. wick catches
+3. tiny ignition flash
+4. flame grows
+5. flame stabilizes
+6. spark moves to next candle
+
+Repeat sequentially.
+
+---
+
+# 23. FLAME DESIGN
+
+Every flame should have:
+
+- blue base
+- yellow center
+- orange outer body
+- bright core
+- soft glow
+
+Shape:
+
+```text
+       /\
+      /  \
+     /    \
+     \    /
+      \  /
+       \/
+```
+
+But it should look organic rather than geometric.
+
+Flames must continuously flicker.
+
+Randomize:
+
+- scale
+- rotation
+- width
+- height
+- opacity
+- glow intensity
+
+Each flame should flicker independently.
+
+Do NOT synchronize every flame.
+
+Use `requestAnimationFrame()` for the continuous flame animation.
+
+---
+
+# 24. CANDLELIGHT EFFECT
+
+As candles are lit, gradually warm the environment.
+
+The cake should receive a subtle warm orange illumination.
+
+Add a small dynamic candlelight glow around the cake.
+
+The table should also receive a warm light.
+
+Do not turn the entire screen orange.
+
+Keep the background predominantly dark.
+
+The final lighting should feel like:
+
+> warm candlelight inside a dark magical room.
+
+---
+
+# 25. STEP 13 — HAPPY BIRTHDAY TEXT
+
+Once all candles are lit, reveal:
+
+**Happy Birthday**
+
+The text should appear above the cake.
+
+It should be written:
+
+**letter by letter**
+
+rather than appearing instantly.
+
+Use an elegant handwritten/script-style appearance.
+
+If external fonts are not allowed, create the lettering using SVG paths or use a graceful system fallback.
+
+Add:
+
+- soft gold glow
+- subtle bloom
+- slight shimmer
+
+If the URL contains:
+
+```text
+?name=Aarav
+```
+
+the final message should become:
+
+**Happy Birthday, Aarav**
+
+If no name is supplied:
+
+**Happy Birthday**
+
+Do not allow unsafe HTML injection through the URL parameter.
+
+Escape/sanitize the name before inserting it into the DOM.
+
+---
+
+# 26. CELEBRATION FINISH
+
+After the text completes:
+
+Create a gentle celebratory effect.
+
+Use:
+
+- golden sparkles
+- subtle confetti
+- tiny glowing particles
+
+The effect should be elegant.
+
+Do NOT create an explosive party effect.
+
+Particles should slowly drift downward.
+
+The cake remains the main focus.
+
+---
+
+# 27. IDLE LOOP
+
+After the construction sequence finishes, enter a continuous idle animation.
+
+The cake itself should remain mostly still.
+
+Only subtle effects continue:
+
+### Flames
+
+- flicker
+- glow
+- slight movement
+
+### Fairy lights
+
+- random twinkle
+
+### Bokeh
+
+- slow movement
+
+### Cake highlights
+
+- occasional subtle shimmer
+
+### Gold decorations
+
+- occasional tiny sparkle
+
+### Ambient particles
+
+- slow drifting
+
+This state should continue indefinitely.
+
+Do not restart the cake construction automatically.
+
+---
+
+# 28. BLOW-OUT INTERACTION
+
+After the cake has been completely built, allow the user to:
+
+- click anywhere
+- tap anywhere
+- press Space
+
+to blow out the candles.
+
+When triggered:
+
+1. candle flames begin disappearing one by one
+2. each flame shrinks
+3. glow fades
+4. thin smoke rises
+5. smoke curls upward
+6. the environment dims slightly
+7. candlelight disappears
+8. after a short pause, show:
+
+**Make a wish ✨**
+
+The wish message should fade in softly.
+
+Use a cinematic transition.
+
+Do not instantly remove all flames simultaneously.
+
+---
+
+# 29. SMOKE
+
+Smoke should be subtle.
+
+Create thin semi-transparent wisps.
+
+Each smoke wisp should:
+
+- begin at a wick
+- rise upward
+- curve slightly
+- expand
+- fade away
+
+Do not create thick cartoon smoke.
+
+---
+
+# 30. REPLAY BUTTON
+
+Create a very small, subtle glass-style button in the bottom-right corner.
+
+Text:
+
+**Replay**
+
+Style:
+
+- translucent dark glass
+- subtle border
+- backdrop blur where supported
+- small text
+- rounded corners
+- low opacity
+
+On hover:
+
+- slightly brighter
+- subtle glow
+
+When clicked:
+
+- reset everything
+- remove cake
+- remove decorations
+- remove candles
+- reset lighting
+- return to empty table
+- restart the complete animation
+
+The replay button must NOT dominate the scene.
+
+---
+
+# 31. OPTIONAL SOUND
+
+Include an optional sound toggle.
+
+Sound must be:
+
+**OFF BY DEFAULT.**
+
+Do not automatically play audio.
+
+If enabled, use Web Audio API-generated subtle sounds instead of external audio files.
+
+Possible effects:
+
+- soft layer landing
+- cream piping sound
+- subtle sparkle
+- match strike
+- gentle chime
+
+Keep sounds extremely subtle and premium.
+
+Respect browser autoplay restrictions.
+
+---
+
+# 32. URL NAME SUPPORT
+
+Read the URL parameter:
+
+```text
+?name=Aarav
+```
+
+Example:
+
+```text
+birthday.html?name=Aarav
+```
+
+Result:
+
+**Happy Birthday, Aarav**
+
+If no name exists:
+
+**Happy Birthday**
+
+Use:
+
+```javascript
+const params = new URLSearchParams(window.location.search);
+const name = params.get("name");
+```
+
+But sanitize the result before rendering.
+
+Never inject raw URL content using unsafe `innerHTML`.
+
+---
+
+# 33. TIMING
+
+Total construction duration should be approximately:
+
+**25–35 seconds.**
+
+The viewer must have enough time to understand each step.
+
+Suggested approximate structure:
+
+```text
+0–2s      Cake board
+2–4s      Bottom sponge
+4–7s      Filling + strawberries
+7–9s      Second sponge
+9–12s     Bottom frosting
+12–14s    Ganache
+14–15s    Dowels
+15–19s    Top tier
+19–22s    Decorations
+22–25s    Toppings
+25–27s    Candles
+27–31s    Candle lighting
+31–34s    Happy Birthday + celebration
+```
+
+These timings are guidelines.
+
+Prioritize visual clarity over exact timestamps.
+
+---
+
+# 34. MOTION PRINCIPLES
+
+Every major movement should use smooth easing.
+
+Use:
+
+- cubic-bezier
+- ease-out
+- ease-in-out
+- spring-like easing
+- subtle overshoot
+
+Avoid:
+
+- linear movement
+- sudden teleportation
+- instant appearance
+- robotic movement
+
+Cake layers should feel like physical objects.
+
+Tools should feel handheld.
+
+Cream should feel viscous.
+
+Ganache should feel liquid.
+
+Candles should feel lightweight.
+
+Toppings should have slight physical bounce.
+
+---
+
+# 35. PHYSICAL REALISM
+
+Every object should have visual depth.
+
+Use combinations of:
+
+- gradients
+- shadows
+- highlights
+- blur
+- opacity
+- scale
+- perspective
+- subtle texture
+
+For example:
+
+### Sponge
+
+Top:
+lighter
+
+Side:
+darker
+
+Edge:
+slightly baked/dark
+
+### Frosting
+
+Base:
+slightly darker
+
+Center:
+main color
+
+Highlight:
+soft bright edge
+
+### Chocolate
+
+Main:
+dark brown
+
+Highlight:
+warm glossy brown
+
+Shadow:
+deep brown/black
+
+---
+
+# 36. RESPONSIVE DESIGN
+
+The animation must work on:
+
+- desktop
+- laptop
+- tablet
+- mobile portrait
+- mobile landscape
+
+Do not simply scale the entire scene without considering viewport proportions.
+
+Use responsive calculations.
+
+The cake must always:
+
+- remain centered
+- remain visible
+- preserve proportions
+- stay above the table
+- avoid overlapping the birthday text
+
+On small screens, reduce:
+
+- bokeh density
+- particle count
+- decoration count
+
+if necessary for performance.
+
+---
+
+# 37. PERFORMANCE
+
+Target smooth animation.
+
+Use:
+
+```javascript
+requestAnimationFrame()
+```
+
+for continuous effects.
+
+Avoid unnecessarily creating hundreds of DOM elements.
+
+Prefer:
+
+- SVG groups
+- Canvas particle systems
+- CSS transforms
+- opacity
+- GPU-friendly transforms
+
+Avoid expensive layout-triggering animations such as repeatedly changing:
+
+```javascript
+top
+left
+width
+height
+```
+
+during high-frequency animation.
+
+Prefer:
+
+```css
+transform: translate(...)
+transform: scale(...)
+transform: rotate(...)
+opacity
+```
+
+Use `will-change` only where appropriate.
+
+---
+
+# 38. REDUCED MOTION
+
+Respect:
+
+```css
+@media (prefers-reduced-motion: reduce)
+```
+
+When reduced motion is enabled:
+
+- shorten the construction
+- reduce particle movement
+- remove large bounces
+- reduce flickering
+- reduce background movement
+- simplify candle animation
+
+The complete experience should still work.
+
+---
+
+# 39. CODE ARCHITECTURE
+
+Keep the JavaScript organized.
+
+Use clearly separated sections such as:
+
+```javascript
+// ========================================
+// CONFIGURATION
+// ========================================
+
+// ========================================
+// DOM / SVG SETUP
+// ========================================
+
+// ========================================
+// BACKGROUND EFFECTS
+// ========================================
+
+// ========================================
+// CAKE COMPONENTS
+// ========================================
+
+// ========================================
+// ANIMATION HELPERS
+// ========================================
+
+// ========================================
+// BUILD SEQUENCE
+// ========================================
+
+// ========================================
+// CANDLE SYSTEM
+// ========================================
+
+// ========================================
+// CELEBRATION
+// ========================================
+
+// ========================================
+// USER INTERACTION
+// ========================================
+
+// ========================================
+// REPLAY
+// ========================================
+```
+
+Create reusable helper functions.
+
+For example:
+
+```javascript
+wait(ms)
+animateElement(...)
+createSponge(...)
+createFrosting(...)
+createStrawberry(...)
+createBlueberry(...)
+createCandle(...)
+createFlame(...)
+createSparkle(...)
+```
+
+Use Promises for sequencing.
+
+---
+
+# 40. IMPORTANT STATE MANAGEMENT
+
+Create a simple animation state.
+
+For example:
+
+```javascript
+let animationState = "idle";
+let candlesLit = false;
+let wishesShown = false;
+let isBuilding = false;
+```
+
+Possible states:
+
+```text
+EMPTY
+BUILDING
+COMPLETE
+CANDLES_LIT
+WISHED
+```
+
+The blow-out interaction should only work once the cake has finished building.
+
+Replay should reset the entire state.
+
+Prevent accidental multiple animation sequences from running simultaneously.
+
+---
+
+# 41. VISUAL QUALITY REQUIREMENTS
+
+The final result must NOT look like:
+
+- a basic CSS cake
+- a flat emoji cake
+- a cartoon birthday card
+- a generic HTML animation
+- a collection of rectangles and circles
+- a simple fade-in slideshow
+
+It should look like a carefully designed interactive visual experience.
+
+The cake should have:
+
+- clear two-tier geometry
+- realistic depth
+- frosting thickness
+- cake texture
+- natural drips
+- dimensional decorations
+- believable shadows
+- warm highlights
+
+---
+
+# 42. NO EXTERNAL ASSETS
+
+Do not require:
+
+- downloaded images
+- local image files
+- external JavaScript libraries
+- external CSS libraries
+- npm
+- React
+- Vue
+- Three.js
+- GSAP
+- jQuery
+
+Everything must work by opening the HTML file directly in a browser.
+
+If using fonts, prefer system fonts unless absolutely necessary.
+
+The page must remain functional without internet access.
+
+---
+
+# 43. FINAL ACCEPTANCE CHECKLIST
+
+Before considering the implementation complete, verify:
+
+### Scene
+
+- [ ] Full-screen dark cinematic background
+- [ ] Fairy lights
+- [ ] Bokeh
+- [ ] Spotlight
+- [ ] Table
+- [ ] Reflection
+- [ ] Cake centered
+
+### Cake Construction
+
+- [ ] Cake board appears first
+- [ ] Bottom sponge appears second
+- [ ] Filling is physically piped
+- [ ] Strawberries are placed individually
+- [ ] Second sponge lands
+- [ ] Frosting is spread
+- [ ] Ganache drips naturally
+- [ ] Dowels appear
+- [ ] Top tier is built separately
+- [ ] Top tier is centered
+- [ ] Decorations are piped individually
+- [ ] Toppings are placed individually
+- [ ] Sprinkles fall
+- [ ] Gold flakes sparkle
+- [ ] Candles rise individually
+- [ ] Candles ignite sequentially
+
+### Celebration
+
+- [ ] Candle flames flicker independently
+- [ ] Candlelight affects surroundings
+- [ ] Happy Birthday writes itself
+- [ ] Optional name works
+- [ ] Sparkles/confetti appear
+- [ ] Idle animation continues
+
+### Interaction
+
+- [ ] Click/tap blows out candles
+- [ ] Space key blows out candles
+- [ ] Smoke appears
+- [ ] Room dims
+- [ ] "Make a wish ✨" appears
+- [ ] Replay works
+- [ ] Replay resets everything
+
+### Technical
+
+- [ ] Single HTML file
+- [ ] No external libraries
+- [ ] No image dependencies
+- [ ] Responsive
+- [ ] Smooth animation
+- [ ] Uses requestAnimationFrame where appropriate
+- [ ] Reduced-motion support
+- [ ] URL name support
+- [ ] Safe URL parameter handling
+- [ ] No console errors
+- [ ] No overlapping animation sequences
+- [ ] No broken buttons
+- [ ] No elements overflowing the viewport
+
+---
+
+# 44. MOST IMPORTANT INSTRUCTION
+
+Do not optimize for simply "having all the features."
+
+Optimize for **visual quality and believable sequencing**.
+
+The viewer should feel like they are watching an elegant miniature cinematic cake-making scene.
+
+The most important characteristics are:
+
+1. **Realistic two-tier cake construction**
+2. **Strict one-by-one sequencing**
+3. **Beautiful lighting**
+4. **Dimensional materials**
+5. **Smooth physical animation**
+6. **Premium cinematic atmosphere**
+7. **Responsive behavior**
+8. **Working interactions**
+9. **Clean, maintainable code**
+10. **No flat/cartoon appearance**
+
+Build the complete working HTML file.
+
+Do not provide a partial implementation.
+
+Do not leave placeholder functions.
+
+Do not use fake buttons that do nothing.
+
+Every requested interaction should actually work.
+
+The final result should be immediately usable by saving it as:
+
+```text
+birthday-cake.html
+```
+
+and opening it in a modern browser.
